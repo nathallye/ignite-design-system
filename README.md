@@ -1,1 +1,1 @@
-# ignite-design-system
+# Design System - ignite

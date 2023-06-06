@@ -50,3 +50,34 @@ export const colors = {
 ```
 
 - Mesmo iremos fazer para os demais tokens.
+
+### Build do pacote com TSUP
+
+- Dentro do diretório `packages/tokens` vamos instalar o TSUP como dependência de desenvolvimento, com o comando seguinte:
+
+``` 
+npm i tsup -D
+```
+
+- Em seguida, no arquivo `packege.json` vamos adicionar os scripts `build` e `dev` para que ele converta nosso código de TS para JS:
+
+``` JSON
+{
+  "name": "@ignite-ui/tokens",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tsup": "^6.7.0",
+    "typescript": "^5.1.3"
+  }
+}
+```

@@ -20,7 +20,7 @@ O Design System é um conjunto de bibliotecas de design, conteúdo e codificaç�
 - Avatar
 - MultiStep
 
-### Criando pacote de tokens (cores, fontes...)
+### Criando pacote de tokens (cores, fontes, espaçamento...)
 
 - Utilizando a estrutura mais simples para poder reaproveitar em qualquer tecnologia depois.
 
@@ -48,3 +48,5 @@ export const colors = {
   ignite900: "#00291D"
 } as const;
 ```
+
+- Mesmo iremos fazer para os demais tokens.

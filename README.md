@@ -81,3 +81,16 @@ npm i tsup -D
   }
 }
 ```
+
+### Configurando Monorepo
+
+- No diretório raiz da aplicação também vamos inicializar o projeto com o comando `npm init -y` (para criar um `package.json` global do design system). Mas como não iremos utilizar esse arquivo para publicar no npm, podemos apagar seu conteúdo e adicionar as configurações seguintes:
+
+``` JSON
+{
+  "private": true,
+  "workspaces": [
+    "packages/*" // pasta que contém os repositórios do monorepo
+  ]
+}
+```

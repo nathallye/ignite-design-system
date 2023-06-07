@@ -118,7 +118,7 @@ npm i tsup -D
 }
 ```
 
-- Feito isso, vamos alterar a localização dos arquivos que dentro do `package.json` do pacote `tokens`:
+- Feito isso, vamos alterar a localização dos arquivos que dentro do `package.json` dos pacotes `tokens` e `react`:
 
 ``` JSON
 {
@@ -136,6 +136,29 @@ npm i tsup -D
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "tsup": "^6.7.0",
+    "typescript": "^5.1.3"
+  }
+}
+```
+
+``` JSON
+{
+  "name": "@ignite-ui/react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@ignite-ui/tokens": "*",
     "tsup": "^6.7.0",
     "typescript": "^5.1.3"
   }

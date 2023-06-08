@@ -74,7 +74,7 @@ npm i tsup -D
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "tsup": "^6.7.0",
     "typescript": "^5.1.3"
@@ -109,7 +109,7 @@ npm i tsup -D
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@ignite-ui/tokens": "*",
     "tsup": "^6.7.0",
@@ -134,7 +134,7 @@ npm i tsup -D
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "tsup": "^6.7.0",
     "typescript": "^5.1.3"
@@ -156,11 +156,98 @@ npm i tsup -D
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@ignite-ui/tokens": "*",
     "tsup": "^6.7.0",
     "typescript": "^5.1.3"
   }
+}
+```
+
+### Configuração do TypeScript
+
+- Vamos agora criar um pacote para a configuração do TypeScript, que será compartilhada entre vários pacotes do nosso monorepo. Para isso, no diretório `packages` vamos criar uma pasta chamada `ts-config` e dentro dela também vamos inicializar o projeto com o comando `npm init -y`.
+
+- Em seguida, no arquivo `package.json` criado vamos fazer as alterações seguintes:
+
+``` JSON
+{
+  "name": "@ignite-ui/ts-config",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true
+}
+```
+
+- Feito isso, vamos criar um arquivo chamado `base.json` que irá conter as configurações do TypeScript (configurações para pacotes que não usam react):
+
+``` JSON
+{
+  "compilerOptions": {
+    "composite": false,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSources": false,
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveWatchOutput": true,
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "exclude": ["node_modules"]
+}
+```
+
+- E um arquivo chamado `react.json` que irá conter as configurações do React (configurações para pacotes que usam react):
+
+``` JSON
+{
+  "extends": "./base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["dom", "ES2015"],
+    "module": "ESNext",
+    "target": "es6"
+  }
+}
+```
+
+- Em seguida, devemos adicionar a dependência de um pacote com outro. Exemplo, no arquivo `package.json` do pacote `react` iremos colocar como dependência o pacote `@ignite-ui/ts-config` (o mesmo deve ser feito no `package.json` do pacote `tokens`):
+
+``` JSON
+{
+  "name": "@ignite-ui/react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@ignite-ui/tokens": "*",
+    "@ignite-ui/ts-config": "*",
+    "tsup": "^6.7.0",
+    "typescript": "^5.1.3"
+  }
+}
+```
+
+- Em seguida, no arquivo `tsconfig.json` dos pacotes iremos informar a configuração que será utilizada do `ts-config` (se é `base.json` ou `react.json`):
+
+``` JSON
+{
+  "extends": "@ignite-ui/ts-config/react.json",
+  "include": ["src"]
 }
 ```

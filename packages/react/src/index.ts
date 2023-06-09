@@ -1,1 +1,1 @@
-console.log("Ok - package React");
+console.log('Ok - package React')

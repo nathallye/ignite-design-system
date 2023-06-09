@@ -24,7 +24,7 @@ O Design System é um conjunto de bibliotecas de design, conteúdo e codificaç�
 
 - Utilizando a estrutura mais simples para poder reaproveitar em qualquer tecnologia depois.
 
-- Vamos criar a estrutura de pastas `packeges/tokens` e dentro desse diretório vamos inicializar o projeto com o comando `npm init -y`; instalar o TypeScript como uma dependência de desenvolvimento com o comando seguinte `npm i -D typescript`e inicializar `npx tsc --int`.
+- Vamos criar a estrutura de pastas `packeges/tokens` e dentro desse diretório vamos inicializar o projeto com o comando `npm init -y`; instalar o `TypeScript` como uma dependência de desenvolvimento com o comando seguinte `npm i -D typescript` e inicializar `npx tsc --int`.
 
 - Feito isso, no diretório `packeges/tokens` vamos criar a pasta `src` e nela criaremos o arquivo `colors` que irá conter todas as cores compartilhadas nas aplicações do ignite:
 
@@ -53,7 +53,7 @@ export const colors = {
 
 ### Build do pacote com TSUP
 
-- Dentro do diretório `packages/tokens` vamos instalar o TSUP como dependência de desenvolvimento, com o comando seguinte:
+- Dentro do diretório `packages/tokens` vamos instalar o `TSUP` como dependência de desenvolvimento, com o comando seguinte:
 
 ```
 npm i tsup -D
@@ -249,5 +249,70 @@ npm i tsup -D
 {
   "extends": "@ignite-ui/ts-config/react.json",
   "include": ["src"]
+}
+```
+
+### Configuração do ESLint
+
+- Vamos agora configurar um pacote que irá conter todas as configurações do ESLint que serão usadas no nosso monorepo. Para isso, no diretório `packages` vamos criar uma pasta chamada `eslint-config` e dentro dela também vamos inicializar o projeto com o comando `npm init -y`.
+
+- Em seguida, no arquivo `package.json` criado vamos fazer as alterações seguintes:
+
+``` JSON
+{
+  "name": "@ignite-ui/eslint-config",
+  "license": "MIT",
+  "private": true,
+  "main": "index.js"
+}
+```
+
+- Dentro do diretório `packages/eslint-config` vamos instalar o `ESLint` e o pacote `@rocketseat/eslint-config` como dependências de desenvolvimento, com o comando seguinte:
+
+```
+npm i eslint @rocketseat/eslint-config -D
+```
+
+- Feito isso, vamos criar um arquivo chamado `index.js` que irá conter as configurações do ESLint:
+
+``` JS
+module.exports = {
+  extends: ["@rocketseat/eslint-config/react"]
+}
+```
+
+- Em seguida, devemos adicionar a dependência de um pacote com outro. Exemplo, no arquivo `package.json` do pacote `react` iremos colocar como dependência o pacote `@ignite-ui/eslint-config` e o script de lint (o mesmo deve ser feito no `package.json` do pacote `tokens`):
+
+``` JSON
+{
+  "name": "@ignite-ui/react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "lint": "eslint src/**/*.ts* --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@ignite-ui/tokens": "*",
+    "@ignite-ui/ts-config": "*",
+    "@ignite-ui/eslint-config": "*",
+    "tsup": "^6.7.0",
+    "typescript": "^5.1.3"
+  }
+}
+```
+
+- Por fim, iremos criar um arquivo chamado `.eslintrc.json` dentro de cada pacote que irá conter a configuração seguinte:
+
+``` JSON
+{
+  "extends": "@ignite-ui/eslint-config"
 }
 ```

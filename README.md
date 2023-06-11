@@ -56,7 +56,7 @@ export const colors = {
 - Dentro do diretório `packages/tokens` vamos instalar o `TSUP` como dependência de desenvolvimento, com o comando seguinte:
 
 ```
-npm i tsup -D
+npm i -D tsup
 ```
 
 - Em seguida, no arquivo `packege.json` vamos adicionar os scripts `build` e `dev` para que ele converta nosso código de TS para JS:
@@ -270,7 +270,7 @@ npm i tsup -D
 - Dentro do diretório `packages/eslint-config` vamos instalar o `ESLint` e o pacote `@rocketseat/eslint-config` como dependências de desenvolvimento, com o comando seguinte:
 
 ```
-npm i eslint @rocketseat/eslint-config -D
+npm i -D eslint @rocketseat/eslint-config
 ```
 
 - Feito isso, vamos criar um arquivo chamado `index.js` que irá conter as configurações do ESLint:
@@ -314,5 +314,54 @@ module.exports = {
 ``` JSON
 {
   "extends": "@ignite-ui/eslint-config"
+}
+```
+
+### Configurando pacote do React - ultizando os tokens dos demais pacotes
+
+- Primeiramente, no diretório `packeges/react` vamos instalar o `React` e seus types como uma dependência de desenvolvimento com o comando seguinte:
+
+```
+npm i -D react @types/react @types/react-dom
+```
+
+- Em seguida, nos scripts do arquivo `package.json` vamos informar que no processo de build não é necessário se preocupar com a importação do react, pois ela é uma importação externa (`--external react`), ou seja, o react será importado da aplicação que está utilizando esse pacote:
+
+``` JSON
+{
+  "name": "@ignite-ui/react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
+    "dev": "tsup src/index.tsx --format esm,cjs --dts --external react --watch",
+    "lint": "eslint src/**/*.ts* --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@ignite-ui/eslint-config": "*",
+    "@ignite-ui/tokens": "*",
+    "@ignite-ui/ts-config": "*",
+    "@types/react": "^18.2.11",
+    "@types/react-dom": "^18.2.4",
+    "react": "^18.2.0",
+    "tsup": "^6.7.0",
+    "typescript": "^5.1.3"
+  }
+}
+```
+
+- Feito isso, já conseguimos criar o nosso primeiro componente:
+
+``` TSX
+import { colors } from "@ignite-ui/tokens";
+
+export function App() {
+  return <h1 style={{ color: colors.ignite300 }}>Hello World</h1>
 }
 ```

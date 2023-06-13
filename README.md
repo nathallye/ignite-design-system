@@ -317,7 +317,7 @@ module.exports = {
 }
 ```
 
-### Configurando pacote do React - ultizando os tokens dos demais pacotes
+### Configurando pacote do React - ultizando os tokens do pacote tokens
 
 - Primeiramente, no diretório `packeges/react` vamos instalar o `React` e seus types como uma dependência de desenvolvimento com o comando seguinte:
 

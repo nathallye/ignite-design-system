@@ -444,46 +444,4 @@ export const App = () => {
 
 ```
 
-<!-- #### Stitches - Estilos globais
-
-- Para configurar os estilos globais com Stitches, iremos criar um arquivo `styles/global.ts` (`.js` funciona também) e importar a função `globalCss` e dentro iremos definir os estilos globais do projeto:
-
-``` TS
-import { globalCss } from ".";
-
-export const globalStyles = globalCss({
-  "*": {
-    margin: 0,
-    padding: 0
-  },
-
-  body: {
-    backgroundColor: "$gray900",
-    color: "$gray100",
-    "-webkit-font-smoothing": "antialiased"
-  },
-
-  "body, input, textarea, button": {
-    fontFamily: "Roboto",
-    fontWeight: 400
-  }
-});
-```
-
-- Feito isso, iremos importar o `globalStyles` dentro de `_app.tsx`:
-
-``` TSX
-import { AppProps } from "next/app";
-
-import { globalStyles } from "../styles/global";
-
-globalStyles();
-
-const App = ({ Component, pageProps }: AppProps) => {
-  return (
-    <Component {...pageProps} />
-  );
-}
-
-export default App;
-``` -->
+### Criando APP em Storybook

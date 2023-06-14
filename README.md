@@ -365,3 +365,125 @@ export function App() {
   return <h1 style={{ color: colors.ignite300 }}>Hello World</h1>
 }
 ```
+
+### Configurando Stitches no pacote React
+
+Ferramenta CSS-in-JS com foco em performance e experiencia de desenvolvimento que utilizaremos para estilizar a nossa aplicação. Para instalar ele vamos rodar o comando seguinte `npm i @stitches/react`;
+
+- Para configurar Stitches, iremos criar um arquivo `styles/index.ts` (`.js` funciona também) e importar a função `createStitches`:
+
+``` TS
+import { createStitches } from "@stitches/react";
+```
+
+Esta função recebe um objeto de configuração:
+
+- `theme`: defina seu tema de design , que mapeia para as propriedades CSS.
+- `media`: Definir pontos de interrupção responsivos reutilizáveis .
+- `utils`: crie utilitários personalizados para melhorar sua experiência de desenvolvedor.
+- `prefix`: Prefixe nomes de classe e variáveis ​​CSS para evitar conflitos.
+- `themeMap`: Defina o mapeamento personalizado de propriedades CSS para tokens de tema.
+
+E retorna todas as funções disponíveis acima:
+
+``` TS
+import { createStitches, defaultThemeMap } from "@stitches/react";
+import {
+  colors,
+  fonts,
+  fontSizes,
+  fontWeights,
+  lineHeights,
+  radii,
+  space,
+} from "@ignite-ui/tokens";
+
+export const {
+  theme,
+  config,
+  styled,
+  css,
+  globalCss,
+  keyframes,
+  getCssText,
+  createTheme
+} = createStitches({
+  themeMap: {
+    ...defaultThemeMap, // importando o map padrão do stitches, para não sobrescrever
+    height: "space", // informando os maps de tokens que iremos utilizar para essas propriedades
+    width: "space" // informando os maps de tokens que iremos utilizar para essas propriedades
+  },
+
+  theme: {
+    colors,
+    fontSizes,
+    fontWeights,
+    fonts,
+    lineHeights,
+    radii,
+    space
+  }
+});
+```
+
+- Deste ponto em diante, nos componentes, iremos importar `styled` e outras funções do arquivo `styles/index.ts`(mas como não precisa especificar o index.ts - vamos importar direto da pasta styles):
+
+``` TSX
+import { styled } from "./styles"
+
+const Button = styled("button", {
+  fontFamily: "$default",
+  backgroundColor: "$ignite500",
+  borderRadius: "$md",
+  padding: "$4"
+})
+
+export const App = () => {
+  return <Button>Hello World</Button>
+};
+
+```
+
+<!-- #### Stitches - Estilos globais
+
+- Para configurar os estilos globais com Stitches, iremos criar um arquivo `styles/global.ts` (`.js` funciona também) e importar a função `globalCss` e dentro iremos definir os estilos globais do projeto:
+
+``` TS
+import { globalCss } from ".";
+
+export const globalStyles = globalCss({
+  "*": {
+    margin: 0,
+    padding: 0
+  },
+
+  body: {
+    backgroundColor: "$gray900",
+    color: "$gray100",
+    "-webkit-font-smoothing": "antialiased"
+  },
+
+  "body, input, textarea, button": {
+    fontFamily: "Roboto",
+    fontWeight: 400
+  }
+});
+```
+
+- Feito isso, iremos importar o `globalStyles` dentro de `_app.tsx`:
+
+``` TSX
+import { AppProps } from "next/app";
+
+import { globalStyles } from "../styles/global";
+
+globalStyles();
+
+const App = ({ Component, pageProps }: AppProps) => {
+  return (
+    <Component {...pageProps} />
+  );
+}
+
+export default App;
+``` -->

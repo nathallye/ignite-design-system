@@ -56,7 +56,7 @@ export const colors = {
 - Dentro do diretório `packages/tokens` vamos instalar o `TSUP` como dependência de desenvolvimento, com o comando seguinte:
 
 ```
-npm i -D tsup
+> npm i -D tsup
 ```
 
 - Em seguida, no arquivo `packege.json` vamos adicionar os scripts `build` e `dev` para que ele converta nosso código de TS para JS:
@@ -270,7 +270,7 @@ npm i -D tsup
 - Dentro do diretório `packages/eslint-config` vamos instalar o `ESLint` e o pacote `@rocketseat/eslint-config` como dependências de desenvolvimento, com o comando seguinte:
 
 ```
-npm i -D eslint @rocketseat/eslint-config
+> npm i -D eslint @rocketseat/eslint-config
 ```
 
 - Feito isso, vamos criar um arquivo chamado `index.js` que irá conter as configurações do ESLint:
@@ -322,7 +322,7 @@ module.exports = {
 - Primeiramente, no diretório `packeges/react` vamos instalar o `React` e seus types como uma dependência de desenvolvimento com o comando seguinte:
 
 ```
-npm i -D react @types/react @types/react-dom
+> npm i -D react @types/react @types/react-dom
 ```
 
 - Em seguida, nos scripts do arquivo `package.json` vamos informar que no processo de build não é necessário se preocupar com a importação do react, pois ela é uma importação externa (`--external react`), ou seja, o react será importado da aplicação que está utilizando esse pacote:
@@ -445,3 +445,63 @@ export const App = () => {
 ```
 
 ### Criando APP em Storybook
+
+- Vamos agora configurar o StoryBook (o Storybook aplicação que permite documentar e testar componentes do front-end) e integrar ele com os plugins do vite e React e já visualizar o funcionamento do Storybook no navegador. Para isso, no diretório `packages` vamos criar a pasta `docs` e dentro dela rodar o comando seguinte:
+
+```
+npx sb init --builder @storybook/builder-vite --type react --use-npm
+```
+
+- Além das pacotes padrões que o storybook já instala, vamos instalar outras dependências que serão necessárias nesse projeto, com os comandos seguintes:
+
+```
+> npm i vite @vitejs/plugin-react -D
+> npm i react react-dom
+```
+
+- Em seguida, vamos criar o arquivo `vite.config.ts` que irá conter as configurações do vite:
+
+``` JS
+/// <reference types="vite/client" />
+
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()]
+});
+```
+
+- Feito isso, vamos fazer alguns ajustes no arquivo `packages/docs/package.json` de modo que fique no padrão dos demais pacotes:
+
+``` JSON
+{
+  "name": "@ignite-ui/docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.20",
+    "@storybook/addon-interactions": "^7.0.20",
+    "@storybook/addon-links": "^7.0.20",
+    "@storybook/blocks": "^7.0.20",
+    "@storybook/react": "^7.0.20",
+    "@storybook/react-vite": "^7.0.20",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "@vitejs/plugin-react": "^4.0.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.0.20",
+    "vite": "^4.3.9"
+  }
+}
+```

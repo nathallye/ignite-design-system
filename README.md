@@ -449,7 +449,7 @@ export const App = () => {
 - Vamos agora configurar o StoryBook (o Storybook aplicação que permite documentar e testar componentes do front-end) e integrar ele com os plugins do vite e React e já visualizar o funcionamento do Storybook no navegador. Para isso, no diretório `packages` vamos criar a pasta `docs` e dentro dela rodar o comando seguinte:
 
 ```
-npx sb init --builder @storybook/builder-vite --type react --use-npm
+> npx sb init --builder @storybook/builder-vite --type react --use-npm
 ```
 
 - Além das pacotes padrões que o storybook já instala, vamos instalar outras dependências que serão necessárias nesse projeto, com os comandos seguintes:

@@ -444,7 +444,7 @@ export const App = () => {
 
 ```
 
-### Criando APP em Storybook
+### Criando app em Storybook
 
 - Vamos agora configurar o StoryBook (o Storybook aplicação que permite documentar e testar componentes do front-end) e integrar ele com os plugins do vite e React e já visualizar o funcionamento do Storybook no navegador. Para isso, no diretório `packages` vamos criar a pasta `docs` e dentro dela rodar o comando seguinte:
 
@@ -498,10 +498,15 @@ export default defineConfig({
     "@storybook/testing-library": "^0.0.14-next.2",
     "@vitejs/plugin-react": "^4.0.0",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "storybook": "^7.0.20",
     "vite": "^4.3.9"
+  },
+  "dependencies": {
+    "@ignite-ui/react": "*",
+    "@ignite-ui/tokens": "*",
+    "@ignite-ui/eslint-config": "*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
 ```

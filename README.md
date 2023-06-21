@@ -169,7 +169,7 @@ export const colors = {
 
 - Vamos agora criar um pacote para a configuração do TypeScript, que será compartilhada entre vários pacotes do nosso monorepo. Para isso, no diretório `packages` vamos criar uma pasta chamada `ts-config` e dentro dela também vamos inicializar o projeto com o comando `npm init -y`.
 
-- Em seguida, no arquivo `package.json` criado vamos fazer as alterações seguintes:
+- Em seguida, no arquivo `packages/ts-config/package.json` criado vamos fazer as alterações seguintes:
 
 ``` JSON
 {
@@ -180,7 +180,7 @@ export const colors = {
 }
 ```
 
-- Feito isso, vamos criar um arquivo chamado `base.json` que irá conter as configurações do TypeScript (configurações para pacotes que não usam react):
+- Feito isso, vamos criar um arquivo chamado `packages/ts-config/base.json` que irá conter as configurações do TypeScript (configurações para pacotes que não usam react):
 
 ``` JSON
 {
@@ -203,7 +203,7 @@ export const colors = {
 }
 ```
 
-- E um arquivo chamado `react.json` que irá conter as configurações do React (configurações para pacotes que usam react):
+- E um arquivo chamado `packages/ts-config/react.json` que irá conter as configurações do React (configurações para pacotes que usam react):
 
 ``` JSON
 {
@@ -256,7 +256,7 @@ export const colors = {
 
 - Vamos agora configurar um pacote que irá conter todas as configurações do ESLint que serão usadas no nosso monorepo. Para isso, no diretório `packages` vamos criar uma pasta chamada `eslint-config` e dentro dela também vamos inicializar o projeto com o comando `npm init -y`.
 
-- Em seguida, no arquivo `package.json` criado vamos fazer as alterações seguintes:
+- Em seguida, no arquivo `packages/eslint-config/package.json` criado vamos fazer as alterações seguintes:
 
 ``` JSON
 {
@@ -273,7 +273,7 @@ export const colors = {
 > npm i -D eslint @rocketseat/eslint-config
 ```
 
-- Feito isso, vamos criar um arquivo chamado `index.js` que irá conter as configurações do ESLint:
+- Feito isso, vamos criar um arquivo chamado `packages/eslint-config/index.js` que irá conter as configurações do ESLint:
 
 ``` JS
 module.exports = {
@@ -319,13 +319,13 @@ module.exports = {
 
 ### Configurando pacote do React - ultizando os tokens do pacote tokens
 
-- Primeiramente, no diretório `packeges/react` vamos instalar o `React` e seus types como uma dependência de desenvolvimento com o comando seguinte:
+- Primeiramente, no diretório `packages/react` vamos instalar o `React` e seus types como uma dependência de desenvolvimento com o comando seguinte:
 
 ```
 > npm i -D react @types/react @types/react-dom
 ```
 
-- Em seguida, nos scripts do arquivo `package.json` vamos informar que no processo de build não é necessário se preocupar com a importação do react, pois ela é uma importação externa (`--external react`), ou seja, o react será importado da aplicação que está utilizando esse pacote:
+- Em seguida, nos scripts do arquivo `packages/react/package.json` vamos informar que no processo de build não é necessário se preocupar com a importação do react, pois ela é uma importação externa (`--external react`), ou seja, o react será importado da aplicação que está utilizando esse pacote:
 
 ``` JSON
 {
@@ -370,7 +370,7 @@ export function App() {
 
 Ferramenta CSS-in-JS com foco em performance e experiencia de desenvolvimento que utilizaremos para estilizar a nossa aplicação. Para instalar ele vamos rodar o comando seguinte `npm i @stitches/react`;
 
-- Para configurar Stitches, iremos criar um arquivo `styles/index.ts` (`.js` funciona também) e importar a função `createStitches`:
+- Para configurar Stitches, iremos criar um arquivo `/src/styles/index.ts` (`.js` funciona também) e importar a função `createStitches`:
 
 ``` TS
 import { createStitches } from "@stitches/react";
@@ -426,22 +426,39 @@ export const {
 });
 ```
 
-- Deste ponto em diante, nos componentes, iremos importar `styled` e outras funções do arquivo `styles/index.ts`(mas como não precisa especificar o index.ts - vamos importar direto da pasta styles):
+- Deste ponto em diante, nos componentes, iremos importar `styled` e outras funções do arquivo `/src/styles/index.ts`(mas como não precisa especificar o index.ts - vamos importar direto da pasta `styles`):
 
 ``` TSX
-import { styled } from "./styles"
+import { ComponentProps } from "react";
+import { styled } from "./styles";
 
-const Button = styled("button", {
+export const Button = styled("button", {
   fontFamily: "$default",
-  backgroundColor: "$ignite500",
-  borderRadius: "$md",
-  padding: "$4"
-})
+  backgroundColor: "$ignite300",
+  borderRadius: "$sm",
+  border: 0,
+  fontWeight: "bold",
+  color: "$white",
 
-export const App = () => {
-  return <Button>Hello World</Button>
-};
+  variants: { // configuração de variantes de estilo do Stitches
+    size: {
+      small: {
+        fontSize: 14,
+        padding: "$2 $4",
+      },
+      big: {
+        fontSize: 16,
+        padding: "$3 $6"
+      }
+    }
+  },
 
+  defaultVariants: { // configuração da variante padrão
+    size: "small"
+  }
+});
+
+export type ButtonProps = ComponentProps<typeof Button>; // extrai as propriedades nativas que o componente pode receber
 ```
 
 ### Criando app em Storybook
@@ -510,3 +527,100 @@ export default defineConfig({
   }
 }
 ```
+
+### Story: Button
+
+- No diretório `packeges/docs` vamos criar a pasta `src/stories` e dentro dela vamos criar o arquivo `Button.stories.tsx` (nossa primeira story):
+
+``` TSX
+import type { Meta, StoryObj } from "@storybook/react"; // tipagens do TypeScript
+import { Button, ButtonProps } from "@ignite-ui/react";
+
+export default {
+  title: "Button", // título da página dessa story
+  component: Button, // componente dessa story - Button -> importado de dentro de @ignite-ui/react
+
+  args: { // args são propriedades - aqui essas propriedades serão herdadas em todas as variações do button
+    children: "Enviar"
+  },
+} as Meta<ButtonProps>; // ButtonProps - é a tipagem que vem do @ignite-ui/react
+
+export const Primary: StoryObj<ButtonProps> = {}; // Variação Primary - todo componente precisa exportar ao menos uma variação
+
+export const Big: StoryObj<ButtonProps> = {
+  args: { // args são propriedades - aqui essas propriedades serão herdadas apenas na variação Big do button
+    size: "big"
+  }
+}
+```
+
+- Em seguida, vamos alterar no arquivo `packeges/docs/.storybook/main.js` a configuração **stories** para os arquivos serem buscados de dentro de `.../src/`:
+
+``` JS
+/** @type { import('@storybook/react-vite').StorybookConfig } */
+const config = {
+  stories: [
+    "../src/pages/**/*.mdx",
+    "../src/stories/**/*.stories.tsx"
+  ],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+  ],
+  framework: {
+    name: "@storybook/react-vite",
+    options: {},
+  },
+  docs: {
+    autodocs: "tag",
+  },
+};
+export default config;
+```
+
+- Feito isso, dentro do arquivo `packeges/docs/package.json` vamos referenciar todos os pacotes que iremos utilizar em **dependencies**:
+
+``` JSON
+{
+  "name": "@ignite-ui/docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.20",
+    "@storybook/addon-interactions": "^7.0.20",
+    "@storybook/addon-links": "^7.0.20",
+    "@storybook/blocks": "^7.0.20",
+    "@storybook/react": "^7.0.20",
+    "@storybook/react-vite": "^7.0.20",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "@vitejs/plugin-react": "^4.0.0",
+    "prop-types": "^15.8.1",
+    "storybook": "^7.0.20",
+    "vite": "^4.3.9"
+  },
+  "dependencies": {
+    "@ignite-ui/eslint-config": "*",
+    "@ignite-ui/react": "*",
+    "@ignite-ui/tokens": "*",
+    "polished": "^4.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
+```
+
+### Tema dark no Storybook
+
+### Adicionando fonte externa
+
+### Documentação de cores

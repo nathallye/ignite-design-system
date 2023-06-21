@@ -22,9 +22,9 @@ export const Button = styled("button", {
     }
   },
 
-  defaultVariants: {
-    size: "small",
+  defaultVariants: { // configuração da variante padrão
+    size: "small"
   }
 });
 
-export type ButtonProps = ComponentProps<typeof Button>; // extrai as propriedades que o componente pode receber
+export type ButtonProps = ComponentProps<typeof Button>; // extrai as propriedades nativas que o componente pode receber

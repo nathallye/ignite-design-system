@@ -621,6 +621,17 @@ export default config;
 
 ### Tema dark no Storybook
 
+- No diretório `packeges/docs/.storybook` vamos criar o arquivo `manager.js` com as configurações seguintes:
+
+``` JS
+import { addons } from "@storybook/addons";
+import { themes } from "@storybook/theming";
+
+addons.setConfig({ // configurando o tema dark
+  theme: themes.dark
+});
+```
+
 ### Adicionando fonte externa
 
 ### Documentação de cores

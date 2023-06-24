@@ -634,4 +634,16 @@ addons.setConfig({ // configurando o tema dark
 
 ### Adicionando fonte externa
 
+- No diretório `packeges/docs/.storybook` vamos criar o arquivo `preview-head.html`(se ainda não existir) com as configurações das fontes que iremos utilizar:
+
+``` JS
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<script>
+  window.global = window;
+</script>
+```
+
 ### Documentação de cores

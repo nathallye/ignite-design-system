@@ -647,3 +647,62 @@ addons.setConfig({ // configurando o tema dark
 ```
 
 ### Documentação de cores
+
+Vamos agora configurar a configuração das cores do nosso Design System de forma que elas sejam visíveis diretamente através da aplicação do StoryBook.
+
+Extensão necessária para funcionamento do **MDX: MDX - Visual Studio Marketplace**.
+
+- Primeiramente, iremos documentar a nossa página Home, para isso, no diretório `packeges/docs/src` vamos criar uma pasta chamada `pages` e dentro dela o arquivo `home.stories.mdx` com as configurações seguintes:
+
+``` MD
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Home" />
+
+# Ignite UI
+
+Design System do Ignite.
+```
+
+- Agora, iremos documentar os nossos tokens, começando pelo token de cores, para isso, iremos criar o componente `ColorsGrid.tsx` dentro de `packeges/docs/src/components` que irá conter as configurações seguintes:
+
+``` TSX
+import { colors } from "@ignite-ui/tokens";
+import { getContrast } from "polished";
+
+export const ColorsGrid = () => {
+  // Object.entries - retorna um array com vários arrays onde a primeira posição é a chave e a segunda é o valor
+  return Object.entries(colors).map(([key, color]) => { // em cima do retorno de Object.entries(colors), fazemos um map em cada array os quais iremos destruturar onde a chave(key) é o nome da cor e o valor(color) é o hexadecimal
+    return (
+      <div key={key} style={{ backgroundColor: color, padding: "2rem" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            fontFamily: "monospace",
+            color: getContrast(color, "#FFF") < 3.5 ? "#000" : "#FFF"
+          }}
+        >
+          <strong>${key}</strong>
+          <span>{color}</span>
+        </div>
+      </div>
+    )
+  });
+}
+```
+
+- Em seguida, no diretório `packeges/docs/src` vamos criar uma pasta chamada `tokens` e dentro dela o arquivo `colors.stories.mdx` com as configurações seguintes:
+
+``` MD
+import { Meta } from "@storybook/addon-docs";
+import { ColorsGrid } from "../../components/ColorsGrid";
+
+<Meta title="Tokens/Colors" /> <!--Tokens/Colors - cria níveis de menu da sidebar do storybook-->
+
+# Colors
+
+Essas são as cores utilizadas no Ignite UI.
+
+<ColorsGrid /> <!--Referência o componente -->
+```

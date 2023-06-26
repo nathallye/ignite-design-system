@@ -18,6 +18,6 @@ export const ColorsGrid = () => {
           <span>{color}</span>
         </div>
       </div>
-    )
+    );
   });
-}
+};

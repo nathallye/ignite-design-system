@@ -692,7 +692,7 @@ export const ColorsGrid = () => {
 }
 ```
 
-- Em seguida, no diretório `packeges/docs/src` vamos criar uma pasta chamada `tokens` e dentro dela o arquivo `colors.stories.mdx` com as configurações seguintes:
+- Em seguida, no diretório `packeges/docs/src` vamos criar uma pasta chamada `tokens` e dentro dela o arquivo/story `colors.stories.mdx` com as configurações seguintes:
 
 ``` MD
 import { Meta } from "@storybook/addon-docs";
@@ -706,3 +706,60 @@ Essas são as cores utilizadas no Ignite UI.
 
 <ColorsGrid /> <!--Referência o componente -->
 ```
+
+### Documentação de tokens
+
+- Agora, iremos documentar todos os tokens restantes, para isso, iremos criar o componente `TokensGrid.tsx` dentro de `packeges/docs/src/components` que irá conter as configurações seguintes:
+
+``` TSX
+import "../styles/tokens-grid.css";
+
+interface TokensGridProps {
+  tokens: Record<string, string>; // Record - Constrói um tipo de objeto cujas chaves de propriedade são Key, se cujos valores de propriedade são Type.
+  hasRemValue?: boolean;
+}
+
+export function TokensGrid({ tokens, hasRemValue = false }: TokensGridProps) {
+  return (
+    <table className="tokens-grid">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+          {hasRemValue && <th>Pixels</th>}
+        </tr>
+      </thead>
+
+      <tbody>
+        {Object.entries(tokens).map(([key, value]) => {
+          return (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{value}</td>
+              {hasRemValue && (
+                <td>{Number(value.replace("rem", "")) * 16}px</td>
+              )}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+}
+```
+
+- Em seguida, no diretório `packeges/docs/src/tokens` vamos criar o arquivo/story `space.stories.mdx` com as configurações seguintes:
+
+``` MD
+import { Meta } from "@storybook/addon-docs";
+import { TokensGrid } from "../../components/TokensGrid";
+import { space } from "@ignite-ui/tokens";
+
+<Meta title="Tokens/Space" />
+
+# Space
+
+<TokensGrid tokens={space} hasRemValue />
+```
+
+- Vamos seguir a mesma linha para os demais tokens.

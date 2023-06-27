@@ -763,3 +763,53 @@ import { space } from "@ignite-ui/tokens";
 ```
 
 - Vamos seguir a mesma linha para os demais tokens.
+
+### Configurando TurboRepo
+
+Turbo é um bundler incremental e um sistema de compilação otimizado para JavaScript e TypeScript, escrito em Rust e ajuda na execução de todos os scripts do monorepo com um único comando.
+
+- Na raiz do projeto vamos instalar o `Turbo` como dependência de desenvolvimento, com o comando seguinte:
+
+```
+npm i turbo@latest -D
+```
+
+- Feito isso, vamos criar um arquivo chamado `turbo.json` que irá conter as configurações seguintes:
+
+``` JSON
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "pipeline": {
+    "dev": {
+      "cache": false
+    },
+    "build": {
+      "outputs": [ // pastas que são geradas com o script de build
+        "dist/**",
+        "storybook-static/**"
+      ],
+      "dependsOn": [
+        "^build"
+      ]
+    }
+  }
+}
+```
+
+- Em seguida, no arquivo `package.json` vamos adicionar os scripts para executar com turbo:
+
+``` JSON
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --parallel", // --parallel -> executa todos os scripts em paralelo
+    "build": "turbo run build"
+  },
+  "devDependencies": {
+    "turbo": "^1.10.6"
+  }
+}
+```

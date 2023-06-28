@@ -24,9 +24,9 @@ O Design System é um conjunto de bibliotecas de design, conteúdo e codificaç�
 
 - Utilizando a estrutura mais simples para poder reaproveitar em qualquer tecnologia depois.
 
-- Vamos criar a estrutura de pastas `packeges/tokens` e dentro desse diretório vamos inicializar o projeto com o comando `npm init -y`; instalar o `TypeScript` como uma dependência de desenvolvimento com o comando seguinte `npm i -D typescript` e inicializar `npx tsc --int`.
+- Vamos criar a estrutura de pastas `packages/tokens` e dentro desse diretório vamos inicializar o projeto com o comando `npm init -y`; instalar o `TypeScript` como uma dependência de desenvolvimento com o comando seguinte `npm i -D typescript` e inicializar `npx tsc --int`.
 
-- Feito isso, no diretório `packeges/tokens` vamos criar a pasta `src` e nela criaremos o arquivo `colors` que irá conter todas as cores compartilhadas nas aplicações do ignite:
+- Feito isso, no diretório `packages/tokens` vamos criar a pasta `src` e nela criaremos o arquivo `colors` que irá conter todas as cores compartilhadas nas aplicações do ignite:
 
 ``` TS
 export const colors = {
@@ -530,7 +530,7 @@ export default defineConfig({
 
 ### Story: Button
 
-- No diretório `packeges/docs` vamos criar a pasta `src/stories` e dentro dela vamos criar o arquivo `Button.stories.tsx` (nossa primeira story):
+- No diretório `packages/docs` vamos criar a pasta `src/stories` e dentro dela vamos criar o arquivo `Button.stories.tsx` (nossa primeira story):
 
 ``` TSX
 import type { Meta, StoryObj } from "@storybook/react"; // tipagens do TypeScript
@@ -554,7 +554,7 @@ export const Big: StoryObj<ButtonProps> = {
 }
 ```
 
-- Em seguida, vamos alterar no arquivo `packeges/docs/.storybook/main.js` a configuração **stories** para os arquivos serem buscados de dentro de `.../src/`:
+- Em seguida, vamos alterar no arquivo `packages/docs/.storybook/main.js` a configuração **stories** para os arquivos serem buscados de dentro de `.../src/`:
 
 ``` JS
 /** @type { import('@storybook/react-vite').StorybookConfig } */
@@ -579,7 +579,7 @@ const config = {
 export default config;
 ```
 
-- Feito isso, dentro do arquivo `packeges/docs/package.json` vamos referenciar todos os pacotes que iremos utilizar em **dependencies**:
+- Feito isso, dentro do arquivo `packages/docs/package.json` vamos referenciar todos os pacotes que iremos utilizar em **dependencies**:
 
 ``` JSON
 {
@@ -621,7 +621,7 @@ export default config;
 
 ### Tema dark no Storybook
 
-- No diretório `packeges/docs/.storybook` vamos criar o arquivo `manager.js` com as configurações seguintes:
+- No diretório `packages/docs/.storybook` vamos criar o arquivo `manager.js` com as configurações seguintes:
 
 ``` JS
 import { addons } from "@storybook/addons";
@@ -634,7 +634,7 @@ addons.setConfig({ // configurando o tema dark
 
 ### Adicionando fonte externa
 
-- No diretório `packeges/docs/.storybook` vamos criar o arquivo `preview-head.html`(se ainda não existir) com as configurações das fontes que iremos utilizar:
+- No diretório `packages/docs/.storybook` vamos criar o arquivo `preview-head.html`(se ainda não existir) com as configurações das fontes que iremos utilizar:
 
 ``` JS
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -652,7 +652,7 @@ Vamos agora configurar a configuração das cores do nosso Design System de form
 
 Extensão necessária para funcionamento do **MDX: MDX - Visual Studio Marketplace**.
 
-- Primeiramente, iremos documentar a nossa página Home, para isso, no diretório `packeges/docs/src` vamos criar uma pasta chamada `pages` e dentro dela o arquivo `home.stories.mdx` com as configurações seguintes:
+- Primeiramente, iremos documentar a nossa página Home, para isso, no diretório `packages/docs/src` vamos criar uma pasta chamada `pages` e dentro dela o arquivo `home.stories.mdx` com as configurações seguintes:
 
 ``` MD
 import { Meta } from "@storybook/addon-docs";
@@ -664,7 +664,7 @@ import { Meta } from "@storybook/addon-docs";
 Design System do Ignite.
 ```
 
-- Agora, iremos documentar os nossos tokens, começando pelo token de cores, para isso, iremos criar o componente `ColorsGrid.tsx` dentro de `packeges/docs/src/components` que irá conter as configurações seguintes:
+- Agora, iremos documentar os nossos tokens, começando pelo token de cores, para isso, iremos criar o componente `ColorsGrid.tsx` dentro de `packages/docs/src/components` que irá conter as configurações seguintes:
 
 ``` TSX
 import { colors } from "@ignite-ui/tokens";
@@ -692,7 +692,7 @@ export const ColorsGrid = () => {
 }
 ```
 
-- Em seguida, no diretório `packeges/docs/src` vamos criar uma pasta chamada `tokens` e dentro dela o arquivo/story `colors.stories.mdx` com as configurações seguintes:
+- Em seguida, no diretório `packages/docs/src` vamos criar uma pasta chamada `tokens` e dentro dela o arquivo/story `colors.stories.mdx` com as configurações seguintes:
 
 ``` MD
 import { Meta } from "@storybook/addon-docs";
@@ -709,7 +709,7 @@ Essas são as cores utilizadas no Ignite UI.
 
 ### Documentação de tokens
 
-- Agora, iremos documentar todos os tokens restantes, para isso, iremos criar o componente `TokensGrid.tsx` dentro de `packeges/docs/src/components` que irá conter as configurações seguintes:
+- Agora, iremos documentar todos os tokens restantes, para isso, iremos criar o componente `TokensGrid.tsx` dentro de `packages/docs/src/components` que irá conter as configurações seguintes:
 
 ``` TSX
 import "../styles/tokens-grid.css";
@@ -748,7 +748,7 @@ export function TokensGrid({ tokens, hasRemValue = false }: TokensGridProps) {
 }
 ```
 
-- Em seguida, no diretório `packeges/docs/src/tokens` vamos criar o arquivo/story `space.stories.mdx` com as configurações seguintes:
+- Em seguida, no diretório `packages/docs/src/tokens` vamos criar o arquivo/story `space.stories.mdx` com as configurações seguintes:
 
 ``` MD
 import { Meta } from "@storybook/addon-docs";
@@ -812,4 +812,43 @@ npm i turbo@latest -D
     "turbo": "^1.10.6"
   }
 }
+```
+
+### Componente: Box(componente - tsx & doc - mdx)
+
+- Primeiramente, no diretório `packages/react/src/components` iremos criar o componente `Box.tsx`:
+
+``` TSX
+import { ComponentProps } from "react";
+import { styled } from "../styles";
+
+export const Box = styled("div", {
+  padding: "$4",
+  borderRadius: "$md",
+  backgroundColor: "$gray800",
+  border: "1px solid $gray600"
+});
+
+export interface BoxProps extends ComponentProps<typeof Box> {};
+```
+
+- Em seguida, podemos criar a documentação (story), para isso, no diretório `packages/docs/src/components` iremos criar o componente `Box.stories.tsx`:
+
+``` TSX
+import type { Meta, StoryObj } from "@storybook/react";
+import { Box, BoxProps } from "@ignite-ui/react";
+
+export default {
+  title: "Surfaces/Box",
+  component: Box,
+  args: {
+    children: (
+      <>
+        <span>Testando o elemento Box</span>
+      </>
+    ),
+  }
+} as Meta<BoxProps>;
+
+export const Primary: StoryObj<BoxProps> = {};
 ```

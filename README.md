@@ -771,10 +771,10 @@ Turbo é um bundler incremental e um sistema de compilação otimizado para Java
 - Na raiz do projeto vamos instalar o `Turbo` como dependência de desenvolvimento, com o comando seguinte:
 
 ```
-npm i turbo@latest -D
+> npm i turbo@latest -D
 ```
 
-- Feito isso, vamos criar um arquivo chamado `turbo.json` que irá conter as configurações seguintes:
+- Feito isso, vamos criar um arquivo chamado `turbo.json` com as configurações seguintes:
 
 ``` JSON
 {
@@ -832,7 +832,7 @@ export const Box = styled("div", {
 export interface BoxProps extends ComponentProps<typeof Box> {};
 ```
 
-- Em seguida, podemos criar a documentação (story), para isso, no diretório `packages/docs/src/components` iremos criar o componente `Box.stories.tsx`:
+- Em seguida, podemos criar a documentação (story), para isso, no diretório `packages/docs/src/components` iremos criar o arquivo `Box.stories.tsx`:
 
 ``` TSX
 import type { Meta, StoryObj } from "@storybook/react";

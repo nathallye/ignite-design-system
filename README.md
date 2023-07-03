@@ -852,3 +852,5 @@ export default {
 
 export const Primary: StoryObj<BoxProps> = {};
 ```
+
+- Vamos seguir a mesma linha para os demais componentes.

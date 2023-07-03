@@ -719,7 +719,7 @@ interface TokensGridProps {
   hasRemValue?: boolean;
 }
 
-export function TokensGrid({ tokens, hasRemValue = false }: TokensGridProps) {
+export const TokensGrid = ({ tokens, hasRemValue = false }: TokensGridProps) => {
   return (
     <table className="tokens-grid">
       <thead>

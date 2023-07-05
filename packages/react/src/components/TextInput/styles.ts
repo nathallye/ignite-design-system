@@ -12,7 +12,7 @@ export const TextInputContainer = styled("div", {
   padding: "$3 $4",
 
   "&:has(input:focus)": {
-    borderColor: "$ignite300",
+    borderColor: "$ignite300"
   },
 
   "&:has(input:disabled)": {
@@ -44,10 +44,10 @@ export const Input = styled("input", {
   },
 
   "&:disabled": {
-    cursor: "not-allowed",
+    cursor: "not-allowed"
   },
 
   "&:placeholder": {
-    color: "$gray400",
+    color: "$gray400"
   }
 });

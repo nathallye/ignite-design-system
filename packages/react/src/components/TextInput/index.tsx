@@ -5,7 +5,7 @@ export interface TextInputProps extends ComponentProps<typeof Input> {
   prefix?: string;
 }
 
-export function TextInput({ prefix, ...props }: TextInputProps) {
+export const TextInput = ({ prefix, ...props }: TextInputProps) => {
   return (
     <TextInputContainer>
       {!!prefix && <Prefix>{prefix}</Prefix>}

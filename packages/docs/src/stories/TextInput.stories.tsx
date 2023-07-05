@@ -5,8 +5,9 @@ export default {
   title: "Form/Text Input",
   component: TextInput,
   args: {},
-  decorators: [
-    (Story) => {
+  decorators: [ // decorators: forma de customizar a view que mostra o componente no storybook,
+                // com isso, podemos colocar outros elementos na view sem ser o filho do componente (children - via args: {children: ""})
+    (Story) => { // essas funções recebe como parâmetro o Story - Story: é basicamente uma função que vai renderizar o componente TextInput
       return (
         <Box
           as="label"

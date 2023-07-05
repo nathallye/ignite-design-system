@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Box, Text, TextInput, TextInputProps } from "@ignite-ui/react";
+import { Box, Text, TextArea, TextAreaProps } from "@ignite-ui/react";
 
 export default {
-  title: "Form/Text Input",
-  component: TextInput,
+  title: "Form/Text Area",
+  component: TextArea,
   args: {},
   decorators: [ // decorators: forma de customizar a view que mostra o componente no storybook, com isso, podemos colocar outros elementos na view sem ser o filho do componente (children - via args: {children: ""})
     (Story) => { // essas funções recebe como parâmetro o Story - Story: é basicamente uma função que vai renderizar o componente TextInput
@@ -12,28 +12,22 @@ export default {
           as="label"
           css={{ display: "flex", flexDirection: "column", gap: "$2" }}
         >
-          <Text size="sm">Email address</Text>
+          <Text size="sm">Observations</Text>
           {Story()}
         </Box>
       );
     }
   ]
-} as Meta<TextInputProps>;
+} as Meta<TextAreaProps>;
 
-export const Primary: StoryObj<TextInputProps> = {
+export const Primary: StoryObj<TextAreaProps> = {
   args: {
-    placeholder: "Type your name"
+    placeholder: "Add any observations..."
   }
 };
 
-export const Disabled: StoryObj<TextInputProps> = {
+export const Disabled: StoryObj<TextAreaProps> = {
   args: {
     disabled: true
-  }
-};
-
-export const WithPrefix: StoryObj<TextInputProps> = {
-  args: {
-    prefix: "cal.com/"
   }
 };

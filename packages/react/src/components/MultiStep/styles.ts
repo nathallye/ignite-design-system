@@ -3,7 +3,7 @@ import { Text } from "../Text";
 
 export const MultiStepContainer = styled("div", {});
 
-export const Label = styled(Text, {
+export const Label = styled(Text, { // usando o próprio componente Text que criamos anteriomente
   color: "$gray200",
 
   defaultVariants: {
@@ -13,8 +13,9 @@ export const Label = styled(Text, {
 
 export const Steps = styled("div", {
   display: "grid",
-  gridTemplateColumns: "repeat(var(--steps-size), 1fr)",
+  gridTemplateColumns: "repeat(var(--steps-size), 1fr)", // --steps-size - variável criada no index.tsx
   gap: "$2",
+
   marginTop: "$1"
 });
 

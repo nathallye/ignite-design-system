@@ -5,12 +5,32 @@ import { ArrowRight } from "phosphor-react";
 export default {
   title: "Form/Button",
   component: Button,
-  args: {
-    children: "Send"
+  args: { // argumentos por padrão
+    children: "Send",
+    variant: "primary",
+    size: "md",
+    disabled: false
   },
   argTypes: {
+    variant: { // campo
+      options: ["primary", "secondary", "tertiary"], // opções
+      control: {
+        type: "inline-radio" // tipo
+      },
+    },
+    size: {
+      options: ["sm", "md"],
+      control: {
+        type: "inline-radio"
+      },
+    },
+    disabled: {
+      control: {
+        type: "boolean"
+      }
+    },
     onClick: { action: "clicked" }
-  },
+  }
 } as Meta<ButtonProps>;
 
 export const Primary: StoryObj<ButtonProps> = {};

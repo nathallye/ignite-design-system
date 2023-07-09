@@ -8,6 +8,18 @@ export default {
     src: "https://github.com/nathallye.png",
     alt: "Nathallye Bacelar"
   },
+  argTypes: {
+    src: { // campo
+      control: {
+        type: "text" // tipo
+      }
+    },
+    alt: {
+      control: {
+        type: "text"
+      }
+    }
+  }
 } as Meta<AvatarProps>;
 
 export const Primary: StoryObj<AvatarProps> = {};

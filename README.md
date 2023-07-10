@@ -854,3 +854,54 @@ export const Primary: StoryObj<BoxProps> = {};
 ```
 
 - Vamos seguir a mesma linha para os demais componentes.
+
+### Publicando Storybook
+
+- Primeiramente, para realizar a publicação do storybook no `ghpages`, no diretório `packages/docs` vamos instalar o pacote `deploy-storybook` como uma dependência de desenvolvimento, rodando o comando seguinte:
+
+```
+npm i @storybook/storybook-deployer --save-dev
+```
+
+- Feito isso, no arquivo `packages/docs/package.json` vamos adicionar o script `deploy-storybook`:
+
+``` JSON
+{
+  "name": "@ignite-ui/docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "deploy-storybook": "storybook-to-ghpages"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.20",
+    "@storybook/addon-interactions": "^7.0.20",
+    "@storybook/addon-links": "^7.0.20",
+    "@storybook/blocks": "^7.0.20",
+    "@storybook/react": "^7.0.20",
+    "@storybook/react-vite": "^7.0.20",
+    "@storybook/storybook-deployer": "^2.8.16",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "@vitejs/plugin-react": "^4.0.0",
+    "prop-types": "^15.8.1",
+    "storybook": "^7.0.20",
+    "vite": "^4.3.9"
+  },
+  "dependencies": {
+    "@ignite-ui/react": "*",
+    "@ignite-ui/tokens": "*",
+    "@storybook/addon-a11y": "^7.0.26",
+    "phosphor-react": "^1.4.1",
+    "polished": "^4.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
+```

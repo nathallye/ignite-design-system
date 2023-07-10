@@ -857,7 +857,7 @@ export const Primary: StoryObj<BoxProps> = {};
 
 ### Publicando Storybook
 
-- Primeiramente, para realizar a publicação do storybook no `ghpages`, no diretório `packages/docs` vamos instalar o pacote `deploy-storybook` como uma dependência de desenvolvimento, rodando o comando seguinte:
+- Primeiramente, para realizar a publicação do storybook no `ghpages`, no diretório `packages/docs` vamos instalar o pacote `deploy-storybook` (https://github.com/storybook-eol/storybook-deployer) como uma dependência de desenvolvimento, rodando o comando seguinte:
 
 ```
 npm i @storybook/storybook-deployer --save-dev
@@ -904,4 +904,37 @@ npm i @storybook/storybook-deployer --save-dev
     "react-dom": "^18.2.0"
   }
 }
+```
+
+- Em seguida, na raiz do projeto vamos criar uma pasta chamada `.github` e dentro dela a subpasta `workflows` com o arquivo `deploy-docs.yml` (será o workflow de publicação da documentação) contendo as configurações seguintes:
+
+``` YML
+name: Deploy docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Deploy storybook
+        working-directory: ./packages/docs
+        run: npm run deploy-storybook -- --ci --existing-output-dir=storybook-static
+        env:
+          GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
 ```

@@ -938,3 +938,58 @@ jobs:
         env:
           GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
 ```
+
+### Configurando Changesets
+
+- O `changesets`, uma ferramenta que vai nos ajudar a manter e gerenciar as versões dos nossos pacotes. Para instalar, na raiz do projeto vamos rodar o comando seguinte:
+
+```
+npm i @changesets/cli -D
+```
+
+- Feito isso, vamos rodar o comando para inicializar:
+
+```
+npx changeset init
+```
+
+- Foi criado a pasta `.changeset` e dentro dela o arquivo `config.json`, nesse arquivo vamos realizar algumas alterações:
+
+``` JSON
+{
+  "$schema": "https://unpkg.com/@changesets/config@2.3.1/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": ["@ignite-ui/docs"]
+}
+```
+
+- Feito isso, no arquivo `package.json` vamos adicianar os scripts `changeset`, `version-packages` e `release`:
+
+``` JSON
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build --filter=packages/docs && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.2",
+    "turbo": "^1.10.6"
+  },
+  "dependencies": {
+    "@radix-ui/react-checkbox": "^1.0.4"
+  }
+}
+```

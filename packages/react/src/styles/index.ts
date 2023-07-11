@@ -7,7 +7,7 @@ import {
   lineHeights,
   radii,
   space,
-} from "@ignite-ui/tokens";
+} from "@ignite-ui-nathallye/tokens";
 
 export const {
   theme,

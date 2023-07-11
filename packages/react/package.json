@@ -1,5 +1,5 @@
 {
-  "name": "@ignite-ui/react",
+  "name": "@ignite-ui-nathallye/react",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -14,8 +14,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@ignite-ui/tokens": "*",
-    "@ignite-ui/ts-config": "*",
+    "@ignite-ui-nathallye/tokens": "*",
+    "@ignite-ui-nathallye/ts-config": "*",
     "@types/react": "^18.2.11",
     "@types/react-dom": "^18.2.4",
     "react": "^18.2.0",

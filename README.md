@@ -63,7 +63,7 @@ export const colors = {
 
 ``` JSON
 {
-  "name": "@ignite-ui/tokens",
+  "name": "@ignite-ui-nathallye/tokens",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -95,11 +95,11 @@ export const colors = {
 }
 ```
 
-- Em seguida, devemos adicionar a dependência de um pacote com outro. Exemplo, no arquivo `package.json` do pacote `react` iremos colocar como dependência o pacote `@ignite-ui/tokens`:
+- Em seguida, devemos adicionar a dependência de um pacote com outro. Exemplo, no arquivo `package.json` do pacote `react` iremos colocar como dependência o pacote `@ignite-ui-nathallye/tokens`:
 
 ``` JSON
 {
-  "name": "@ignite-ui/react",
+  "name": "@ignite-ui-nathallye/react",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -111,7 +111,7 @@ export const colors = {
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@ignite-ui/tokens": "*",
+    "@ignite-ui-nathallye/tokens": "*",
     "tsup": "^6.7.0",
     "typescript": "^5.1.3"
   }
@@ -122,7 +122,7 @@ export const colors = {
 
 ``` JSON
 {
-  "name": "@ignite-ui/tokens",
+  "name": "@ignite-ui-nathallye/tokens",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -144,7 +144,7 @@ export const colors = {
 
 ``` JSON
 {
-  "name": "@ignite-ui/react",
+  "name": "@ignite-ui-nathallye/react",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -158,7 +158,7 @@ export const colors = {
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@ignite-ui/tokens": "*",
+    "@ignite-ui-nathallye/tokens": "*",
     "tsup": "^6.7.0",
     "typescript": "^5.1.3"
   }
@@ -173,7 +173,7 @@ export const colors = {
 
 ``` JSON
 {
-  "name": "@ignite-ui/ts-config",
+  "name": "@ignite-ui-nathallye/ts-config",
   "version": "1.0.0",
   "license": "MIT",
   "private": true
@@ -217,11 +217,11 @@ export const colors = {
 }
 ```
 
-- Em seguida, devemos adicionar a dependência de um pacote com outro. Exemplo, no arquivo `package.json` do pacote `react` iremos colocar como dependência o pacote `@ignite-ui/ts-config` (o mesmo deve ser feito no `package.json` do pacote `tokens`):
+- Em seguida, devemos adicionar a dependência de um pacote com outro. Exemplo, no arquivo `package.json` do pacote `react` iremos colocar como dependência o pacote `@ignite-ui-nathallye/ts-config` (o mesmo deve ser feito no `package.json` do pacote `tokens`):
 
 ``` JSON
 {
-  "name": "@ignite-ui/react",
+  "name": "@ignite-ui-nathallye/react",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -235,8 +235,8 @@ export const colors = {
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@ignite-ui/tokens": "*",
-    "@ignite-ui/ts-config": "*",
+    "@ignite-ui-nathallye/tokens": "*",
+    "@ignite-ui-nathallye/ts-config": "*",
     "tsup": "^6.7.0",
     "typescript": "^5.1.3"
   }
@@ -247,7 +247,7 @@ export const colors = {
 
 ``` JSON
 {
-  "extends": "@ignite-ui/ts-config/react.json",
+  "extends": "@ignite-ui-nathallye/ts-config/react.json",
   "include": ["src"]
 }
 ```
@@ -260,7 +260,7 @@ export const colors = {
 
 ``` JSON
 {
-  "name": "@ignite-ui/eslint-config",
+  "name": "@ignite-ui-nathallye/eslint-config",
   "license": "MIT",
   "private": true,
   "main": "index.js"
@@ -281,11 +281,11 @@ module.exports = {
 }
 ```
 
-- Em seguida, devemos adicionar a dependência de um pacote com outro. Exemplo, no arquivo `package.json` do pacote `react` iremos colocar como dependência o pacote `@ignite-ui/eslint-config` e o script de lint (o mesmo deve ser feito no `package.json` do pacote `tokens`):
+- Em seguida, devemos adicionar a dependência de um pacote com outro. Exemplo, no arquivo `package.json` do pacote `react` iremos colocar como dependência o pacote `@ignite-ui-nathallye/eslint-config` e o script de lint (o mesmo deve ser feito no `package.json` do pacote `tokens`):
 
 ``` JSON
 {
-  "name": "@ignite-ui/react",
+  "name": "@ignite-ui-nathallye/react",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -300,9 +300,9 @@ module.exports = {
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@ignite-ui/tokens": "*",
-    "@ignite-ui/ts-config": "*",
-    "@ignite-ui/eslint-config": "*",
+    "@ignite-ui-nathallye/tokens": "*",
+    "@ignite-ui-nathallye/ts-config": "*",
+    "@ignite-ui-nathallye/eslint-config": "*",
     "tsup": "^6.7.0",
     "typescript": "^5.1.3"
   }
@@ -313,7 +313,7 @@ module.exports = {
 
 ``` JSON
 {
-  "extends": "@ignite-ui/eslint-config"
+  "extends": "@ignite-ui-nathallye/eslint-config"
 }
 ```
 
@@ -329,7 +329,7 @@ module.exports = {
 
 ``` JSON
 {
-  "name": "@ignite-ui/react",
+  "name": "@ignite-ui-nathallye/react",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -344,9 +344,9 @@ module.exports = {
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@ignite-ui/eslint-config": "*",
-    "@ignite-ui/tokens": "*",
-    "@ignite-ui/ts-config": "*",
+    "@ignite-ui-nathallye/eslint-config": "*",
+    "@ignite-ui-nathallye/tokens": "*",
+    "@ignite-ui-nathallye/ts-config": "*",
     "@types/react": "^18.2.11",
     "@types/react-dom": "^18.2.4",
     "react": "^18.2.0",
@@ -359,7 +359,7 @@ module.exports = {
 - Feito isso, já conseguimos criar o nosso primeiro componente:
 
 ``` TSX
-import { colors } from "@ignite-ui/tokens";
+import { colors } from "@ignite-ui-nathallye/tokens";
 
 export function App() {
   return <h1 style={{ color: colors.ignite300 }}>Hello World</h1>
@@ -396,7 +396,7 @@ import {
   lineHeights,
   radii,
   space,
-} from "@ignite-ui/tokens";
+} from "@ignite-ui-nathallye/tokens";
 
 export const {
   theme,
@@ -493,7 +493,7 @@ export default defineConfig({
 
 ``` JSON
 {
-  "name": "@ignite-ui/docs",
+  "name": "@ignite-ui-nathallye/docs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -519,9 +519,9 @@ export default defineConfig({
     "vite": "^4.3.9"
   },
   "dependencies": {
-    "@ignite-ui/react": "*",
-    "@ignite-ui/tokens": "*",
-    "@ignite-ui/eslint-config": "*",
+    "@ignite-ui-nathallye/react": "*",
+    "@ignite-ui-nathallye/tokens": "*",
+    "@ignite-ui-nathallye/eslint-config": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
@@ -534,16 +534,16 @@ export default defineConfig({
 
 ``` TSX
 import type { Meta, StoryObj } from "@storybook/react"; // tipagens do TypeScript
-import { Button, ButtonProps } from "@ignite-ui/react";
+import { Button, ButtonProps } from "@ignite-ui-nathallye/react";
 
 export default {
   title: "Button", // título da página dessa story
-  component: Button, // componente dessa story - Button -> importado de dentro de @ignite-ui/react
+  component: Button, // componente dessa story - Button -> importado de dentro de @ignite-ui-nathallye/react
 
   args: { // args são propriedades - aqui essas propriedades serão herdadas em todas as variações do button
     children: "Enviar"
   },
-} as Meta<ButtonProps>; // ButtonProps - é a tipagem que vem do @ignite-ui/react
+} as Meta<ButtonProps>; // ButtonProps - é a tipagem que vem do @ignite-ui-nathallye/react
 
 export const Primary: StoryObj<ButtonProps> = {}; // Variação Primary - todo componente precisa exportar ao menos uma variação
 
@@ -583,7 +583,7 @@ export default config;
 
 ``` JSON
 {
-  "name": "@ignite-ui/docs",
+  "name": "@ignite-ui-nathallye/docs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -609,9 +609,9 @@ export default config;
     "vite": "^4.3.9"
   },
   "dependencies": {
-    "@ignite-ui/eslint-config": "*",
-    "@ignite-ui/react": "*",
-    "@ignite-ui/tokens": "*",
+    "@ignite-ui-nathallye/eslint-config": "*",
+    "@ignite-ui-nathallye/react": "*",
+    "@ignite-ui-nathallye/tokens": "*",
     "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -667,7 +667,7 @@ Design System do Ignite.
 - Agora, iremos documentar os nossos tokens, começando pelo token de cores, para isso, iremos criar o componente `ColorsGrid.tsx` dentro de `packages/docs/src/components` que irá conter as configurações seguintes:
 
 ``` TSX
-import { colors } from "@ignite-ui/tokens";
+import { colors } from "@ignite-ui-nathallye/tokens";
 import { getContrast } from "polished";
 
 export const ColorsGrid = () => {
@@ -753,7 +753,7 @@ export const TokensGrid = ({ tokens, hasRemValue = false }: TokensGridProps) => 
 ``` MD
 import { Meta } from "@storybook/addon-docs";
 import { TokensGrid } from "../../components/TokensGrid";
-import { space } from "@ignite-ui/tokens";
+import { space } from "@ignite-ui-nathallye/tokens";
 
 <Meta title="Tokens/Space" />
 
@@ -836,7 +836,7 @@ export interface BoxProps extends ComponentProps<typeof Box> {};
 
 ``` TSX
 import type { Meta, StoryObj } from "@storybook/react";
-import { Box, BoxProps } from "@ignite-ui/react";
+import { Box, BoxProps } from "@ignite-ui-nathallye/react";
 
 export default {
   title: "Surfaces/Box",
@@ -867,7 +867,7 @@ npm i @storybook/storybook-deployer --save-dev
 
 ``` JSON
 {
-  "name": "@ignite-ui/docs",
+  "name": "@ignite-ui-nathallye/docs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -895,8 +895,8 @@ npm i @storybook/storybook-deployer --save-dev
     "vite": "^4.3.9"
   },
   "dependencies": {
-    "@ignite-ui/react": "*",
-    "@ignite-ui/tokens": "*",
+    "@ignite-ui-nathallye/react": "*",
+    "@ignite-ui-nathallye/tokens": "*",
     "@storybook/addon-a11y": "^7.0.26",
     "phosphor-react": "^1.4.1",
     "polished": "^4.2.2",
@@ -965,7 +965,7 @@ npx changeset init
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@ignite-ui/docs"]
+  "ignore": ["@ignite-ui-nathallye/docs"]
 }
 ```
 

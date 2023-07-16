@@ -1,5 +1,9 @@
 # Design System - Ignite
 
+<div align="center">
+  <img width="700" src="">
+</div>
+
 ## O que é um Design System?
 
 O Design System é um conjunto de bibliotecas de design, conteúdo e codificação de uma empresa, com diretrizes de estilo e componentes codificados que são reutilizáveis e documentados, para uso em conjunto na criação de interfaces de produtos e sistemas. O Design System é utilizado para padronizar um ou mais produtos, sejam eles web, mobile ou app.

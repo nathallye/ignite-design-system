@@ -1,7 +1,7 @@
 # Design System - Ignite
 
 <div align="center">
-  <img width="700" src="">
+  <img width="700" src="https://github.com/nathallye/ignite-design-system/assets/86172286/9e7a89dd-943d-4bbb-80c4-c8b846139648">
 </div>
 
 ## O que é um Design System?
